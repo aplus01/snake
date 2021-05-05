@@ -1,0 +1,23 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "Snake in vanilla js using canvas",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aplus01/snake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aplus01/snake/issues"
+  },
+  "homepage": "https://github.com/aplus01/snake#readme"
+}

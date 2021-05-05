@@ -1,12 +1,8 @@
-export default class Snake {
+class Snake {
   constructor(game) {
-    this.position = {
-      x: game.gameWidth * 0.5,
-      y: game.gameHeight * 0.5,
-    };
-
-    this.isTail = false;
-    this.isHead = false;
+    
+    this.body = [];
+    
     this.speed = {
       x: 0,
       y: 0,
@@ -17,8 +13,11 @@ export default class Snake {
 
   draw(ctx) {
     ctx.fillStyle = 'red';
-    ctx.fillRect(100, 100, 40, 40);
+
+    for(let i = 0; i < this.body.length; i++)
+      ctx.fillRect(this.body[i].position.x, this.body[i].position.y, this.body[i].width, this.body[i].height);
   }
+  
   update(deltaTime) {
     this.position;
   }
@@ -44,3 +43,15 @@ export default class Snake {
     this.length++;
   }
 }
+
+class Body {
+  constructor(position) {
+    this.position = position;
+    this.isTail = false;
+    this.isHead = false;
+    this.width = 39;
+    this.height = 39;
+  }
+}
+
+export {Snake, Body}

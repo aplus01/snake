@@ -32,10 +32,31 @@ class Snake {
   }
 
   update() {
+    // 0 speed no change
     if (this.speed.x === 0 && this.speed.y === 0) return;
 
     const tail = this.body[this.body.length - 1];
     const head = this.body[0];
+
+    // if next space is fruit then grow
+    if (
+      this.game.fruit.position.x ===
+        head.position.x + this.speed.x * this.game.blockSize &&
+      this.game.fruit.position.y ===
+        head.position.y + this.speed.y * this.game.blockSize
+    ) {
+      this.body = [
+        new Body({
+          x: head.position.x + this.speed.x * this.game.blockSize,
+          y: head.position.y + this.speed.y * this.game.blockSize,
+        }),
+        ...this.body,
+      ];
+      this.game.fruit.position = this.game.fruit.placeFruit();
+      this.game.gameSpeed += 0.5;
+      return;
+    }
+    // keep same size
     tail.position.x = head.position.x + this.speed.x * this.game.blockSize;
     tail.position.y = head.position.y + this.speed.y * this.game.blockSize;
 
@@ -72,8 +93,6 @@ class Snake {
     this.speed.y = 0;
     this.heading = MOVEMENT.STOPPED;
   }
-
-  eat() {}
 }
 
 class Body {

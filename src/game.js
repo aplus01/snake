@@ -1,6 +1,7 @@
 import { Snake, Body } from './snake.js';
 import InputHandler from './input-handler.js';
 import { buildLevel, level1 } from './level.js';
+import Fruit from './fruit.js';
 
 export default class Game {
   constructor() {
@@ -19,8 +20,10 @@ export default class Game {
     };
     this.buildSnake(4, start);
 
+    this.fruit = new Fruit(this);
+
     this.blocks = buildLevel(this, level1);
-    this.gameObjs = [this.snake, ...this.blocks];
+    this.gameObjs = [this.snake, ...this.blocks, this.fruit];
   }
 
   update() {

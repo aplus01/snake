@@ -19,7 +19,7 @@ export default class Fruit {
   }
 
   placeFruit() {
-    const xRange = [1, 63];
+    const xRange = [1, 62];
     const yRange = [2, 39];
 
     return {

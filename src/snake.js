@@ -38,13 +38,24 @@ class Snake {
     const tail = this.body[this.body.length - 1];
     const head = this.body[0];
 
-    // if next space is fruit then grow
-    if (
-      this.game.fruit.position.x ===
-        head.position.x + this.speed.x * this.game.blockSize &&
-      this.game.fruit.position.y ===
-        head.position.y + this.speed.y * this.game.blockSize
-    ) {
+    // body collision check
+    for (let b = 0; b < this.body.length; b++) {
+      if (this.detectCollision(head, this.body[b])) {
+        this.game.restart();
+        return;
+      }
+    }
+
+    // wall check
+    for (let b = 0; b < this.game.blocks.length; b++) {
+      if (this.detectCollision(head, this.game.blocks[b])) {
+        this.game.restart();
+        return;
+      }
+    }
+
+    // fruit check
+    if (this.detectCollision(head, this.game.fruit)) {
       this.body = [
         new Body({
           x: head.position.x + this.speed.x * this.game.blockSize,
@@ -63,6 +74,14 @@ class Snake {
     this.body = [tail, ...this.body.slice(0, this.body.length - 1)];
   }
 
+  detectCollision(target, gameObject) {
+    return (
+      gameObject.position.x ===
+        target.position.x + this.speed.x * this.game.blockSize &&
+      gameObject.position.y ===
+        target.position.y + this.speed.y * this.game.blockSize
+    );
+  }
   move(direction) {
     switch (direction) {
       case MOVEMENT.UP:
